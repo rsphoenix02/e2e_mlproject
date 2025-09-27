@@ -1,4 +1,5 @@
 import sys
+from src.logger import logging
 
 class CustomException(Exception):
     def __init__(self, error_message:str, error_detail:sys):
@@ -15,12 +16,3 @@ def error_message_detail(error:str, error_detail:sys)->str:
     error_message = f"Error occured in python script name {filename}, line no {line_number}.\nError message: {str(error)}"
 
     return error_message
-
-if __name__=='__main__':
-    import logging
-
-    try:
-        a = 1/0
-    except Exception as e:
-        logging.info("Division by zero")
-        raise CustomException(e, sys)
