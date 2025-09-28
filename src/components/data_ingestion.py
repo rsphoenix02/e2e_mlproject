@@ -42,10 +42,14 @@ class DataIngestion:
         
 if __name__=='__main__':
     from src.components.data_tranformation import DataTransformation
+    from src.components.model_trainer import ModelTrainer
 
     ingestion_obj = DataIngestion()
     train_data_path, test_data_path = ingestion_obj.initiate_data_ingestion()
 
     transformation_obj = DataTransformation()
-    transformation_obj.initiate_data_transformation(train_data_path, test_data_path)
+    train_arr, test_arr, _ = transformation_obj.initiate_data_transformation(train_data_path, test_data_path)
+
+    model_trainer_obj = ModelTrainer()
+    print(model_trainer_obj.initiate_model_trainer(train_arr, test_arr))
 
